@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="autoflow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2979ff" />
+      <stop offset="100%" stop-color="#00f2ff" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#0a0a0a" />
+  <rect x="7" y="7" width="50" height="50" rx="16" fill="url(#autoflow-gradient)" />
+  <path d="M32 17 18 47h8l2.8-6.6h13.4L45 47h8L39 17h-7Zm.1 10.7 4.8 11.1h-9.5l4.7-11.1Z" fill="#04111f" />
+</svg>
