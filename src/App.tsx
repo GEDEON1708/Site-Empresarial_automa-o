@@ -283,10 +283,10 @@ const LogoGrid = () => {
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   <motion.div
-    initial={{ opacity: 0, y: 10 }}
+    initial={{ opacity: 0, y: 6 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -10 }}
-    transition={{ duration: 0.4, ease: "easeOut" }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.18, ease: "easeOut" }}
   >
     {children}
   </motion.div>
@@ -1225,7 +1225,7 @@ export default function App() {
           <Navbar />
           
           <main className="relative z-10">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="sync" initial={false}>
               <div key={location.pathname}>
                 <Routes location={location}>
                   <Route path="/" element={<PageWrapper><Hero /><LogoGrid /></PageWrapper>} />
