@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
@@ -27,9 +27,6 @@ import {
   Rocket,
   Users
 } from 'lucide-react';
-
-import { ContactWidget } from './components/ContactWidget';
-
 // --- Components ---
 
 const Logo = ({ className = "" }: { className?: string }) => {
@@ -80,7 +77,7 @@ const Logo = ({ className = "" }: { className?: string }) => {
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   useEffect(() => {
-    const timer = setTimeout(onComplete, 3000); // 3 seconds splash
+    const timer = setTimeout(onComplete, 900);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -301,6 +298,25 @@ const AmbientGlow = ({ className, delay = 0 }: { className: string; delay?: numb
     animate={{ x: [0, 18, 0], y: [0, -22, 0], scale: [1, 1.08, 1] }}
     transition={{ duration: 12, delay, repeat: Infinity, ease: 'easeInOut' }}
   />
+);
+
+const ServicesPage = lazy(() =>
+  import('./pages/secondaryPages').then((module) => ({ default: module.ServicesPage }))
+);
+const AboutPage = lazy(() =>
+  import('./pages/secondaryPages').then((module) => ({ default: module.AboutPage }))
+);
+const TestimonialsPage = lazy(() =>
+  import('./pages/secondaryPages').then((module) => ({ default: module.TestimonialsPage }))
+);
+const SuccessCasesPage = lazy(() =>
+  import('./pages/secondaryPages').then((module) => ({ default: module.SuccessCasesPage }))
+);
+const ContactPage = lazy(() =>
+  import('./pages/secondaryPages').then((module) => ({ default: module.ContactPage }))
+);
+const LazyContactWidget = lazy(() =>
+  import('./components/ContactWidget').then((module) => ({ default: module.ContactWidget }))
 );
 
 const HeroPreview = () => {
@@ -1093,9 +1109,38 @@ const ScrollToTop = () => {
   return null;
 };
 
+const RouteFallback = () => (
+  <div className="relative z-10 px-4 sm:px-6 py-24 sm:py-28">
+    <div className="max-w-7xl mx-auto">
+      <div className="h-56 rounded-[32px] border border-white/10 bg-white/5 overflow-hidden">
+        <motion.div
+          className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+          animate={{ x: ['-120%', '320%'] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+    </div>
+  </div>
+);
+
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const hasSeenSplash = window.sessionStorage.getItem('autoflow-splash-seen') === '1';
+    const prefersReducedMotion =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    return !(hasSeenSplash || prefersReducedMotion);
+  });
   const location = useLocation();
+
+  const handleSplashComplete = () => {
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem('autoflow-splash-seen', '1');
+    }
+    setShowSplash(false);
+  };
 
   return (
     <div className="min-h-screen font-sans selection:bg-neutral-900 selection:text-white bg-neutral-950 text-white relative overflow-x-hidden">
@@ -1132,7 +1177,7 @@ export default function App() {
       </div>
 
       <AnimatePresence>
-        {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
+        {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       </AnimatePresence>
 
       {!showSplash && (
@@ -1145,11 +1190,11 @@ export default function App() {
               <div key={location.pathname}>
                 <Routes location={location}>
                   <Route path="/" element={<PageWrapper><Hero /><LogoGrid /></PageWrapper>} />
-                  <Route path="/Servicos" element={<PageWrapper><Services /></PageWrapper>} />
-                  <Route path="/Sobre" element={<PageWrapper><About /></PageWrapper>} />
-                  <Route path="/Depoimentos" element={<PageWrapper><Testimonials /></PageWrapper>} />
-                  <Route path="/Cases" element={<PageWrapper><SuccessCases /></PageWrapper>} />
-                  <Route path="/Contato" element={<PageWrapper><Contact /></PageWrapper>} />
+                  <Route path="/Servicos" element={<PageWrapper><Suspense fallback={<RouteFallback />}><ServicesPage /></Suspense></PageWrapper>} />
+                  <Route path="/Sobre" element={<PageWrapper><Suspense fallback={<RouteFallback />}><AboutPage /></Suspense></PageWrapper>} />
+                  <Route path="/Depoimentos" element={<PageWrapper><Suspense fallback={<RouteFallback />}><TestimonialsPage /></Suspense></PageWrapper>} />
+                  <Route path="/Cases" element={<PageWrapper><Suspense fallback={<RouteFallback />}><SuccessCasesPage /></Suspense></PageWrapper>} />
+                  <Route path="/Contato" element={<PageWrapper><Suspense fallback={<RouteFallback />}><ContactPage /></Suspense></PageWrapper>} />
                   <Route path="*" element={<PageWrapper><Hero /><LogoGrid /></PageWrapper>} />
                 </Routes>
               </div>
@@ -1157,7 +1202,9 @@ export default function App() {
           </main>
           
           <Footer />
-          <ContactWidget />
+          <Suspense fallback={null}>
+            <LazyContactWidget />
+          </Suspense>
         </>
       )}
     </div>
