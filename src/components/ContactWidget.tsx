@@ -13,14 +13,14 @@ export const ContactWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 sm:bottom-6 sm:left-auto sm:right-6 z-[100] flex justify-end">
+    <div className="fixed left-4 right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:bottom-6 sm:left-auto sm:right-6 z-[100] flex justify-end">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="absolute bottom-20 right-0 w-full sm:w-[400px] h-[500px] max-h-[calc(100vh-7rem)] glass rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-white/10 neon-glow-blue"
+            className="absolute bottom-20 right-0 w-full max-w-[calc(100vw-2rem)] sm:max-w-[400px] sm:w-[400px] h-[500px] max-h-[calc(100vh-7rem)] glass rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-white/10 neon-glow-blue"
           >
             <div className="bg-neutral-900 p-4 flex items-center justify-between text-white border-b border-white/5">
               <div className="flex items-center gap-3">
@@ -102,6 +102,8 @@ export const ContactWidget = () => {
       </AnimatePresence>
 
       <motion.button
+        animate={{ y: [0, -6, 0], boxShadow: ['0 0 0 rgba(0,242,255,0.15)', '0 0 22px rgba(0,242,255,0.35)', '0 0 0 rgba(0,242,255,0.15)'] }}
+        transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
         whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(0, 242, 255, 0.5)' }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}

@@ -244,15 +244,24 @@ const LogoGrid = () => {
   ];
 
   return (
-    <section className="py-10 sm:py-12 bg-neutral-950 border-y border-white/5">
+    <section className="relative py-10 sm:py-12 bg-neutral-950 border-y border-white/5 overflow-hidden">
+      <AmbientGlow className="left-10 top-0 h-24 w-24 bg-neon-blue/10" delay={1} />
+      <AmbientGlow className="right-12 bottom-0 h-28 w-28 bg-neon-cyan/10" delay={2} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <p className="text-center text-[10px] font-bold uppercase tracking-[0.24em] sm:tracking-[0.3em] text-neutral-600 mb-8 sm:mb-10">
+        <motion.p
+          {...getRevealProps(0.05)}
+          className="text-center text-[10px] font-bold uppercase tracking-[0.24em] sm:tracking-[0.3em] text-neutral-600 mb-8 sm:mb-10"
+        >
           Empresas que confiam na Autoflow
-        </p>
+        </motion.p>
         <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
           {partners.map((p, i) => (
             <motion.div 
               key={i}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportConfig}
+              transition={{ duration: 0.55, delay: i * 0.06, ease: 'easeOut' }}
               whileHover={{ scale: 1.1, opacity: 1 }}
               className="flex items-center gap-2 text-white group cursor-pointer"
             >
@@ -275,6 +284,23 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   >
     {children}
   </motion.div>
+);
+
+const viewportConfig = { once: true, amount: 0.2 };
+
+const getRevealProps = (delay = 0, x = 0, y = 24) => ({
+  initial: { opacity: 0, x, y },
+  whileInView: { opacity: 1, x: 0, y: 0 },
+  viewport: viewportConfig,
+  transition: { duration: 0.7, delay, ease: 'easeOut' },
+});
+
+const AmbientGlow = ({ className, delay = 0 }: { className: string; delay?: number }) => (
+  <motion.div
+    className={`pointer-events-none absolute rounded-full blur-[110px] ${className}`}
+    animate={{ x: [0, 18, 0], y: [0, -22, 0], scale: [1, 1.08, 1] }}
+    transition={{ duration: 12, delay, repeat: Infinity, ease: 'easeInOut' }}
+  />
 );
 
 const HeroPreview = () => {
@@ -317,17 +343,24 @@ const HeroPreview = () => {
 
           <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.85fr)]">
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3">
                 {summaryCards.map((card) => (
-                  <div key={card.label} className="rounded-[24px] border border-white/10 bg-white/5 p-4">
+                  <motion.div
+                    key={card.label}
+                    whileHover={{ y: -4, scale: 1.01, borderColor: 'rgba(0, 242, 255, 0.35)' }}
+                    className="rounded-[24px] border border-white/10 bg-white/5 p-4 transition-colors"
+                  >
                     <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">{card.label}</p>
                     <p className="mt-3 text-2xl font-bold text-white sm:text-3xl">{card.value}</p>
                     <p className="mt-2 text-sm text-neutral-400">{card.detail}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
-              <div className="rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5">
+              <motion.div
+                whileHover={{ y: -4, scale: 1.005, borderColor: 'rgba(0, 242, 255, 0.25)' }}
+                className="rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5 transition-colors"
+              >
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Fluxos criticos</p>
@@ -344,28 +377,39 @@ const HeroPreview = () => {
                         <span className="text-neutral-500">{step.progress}</span>
                       </div>
                       <div className="h-2 rounded-full bg-white/5">
-                        <div
+                        <motion.div
                           className="h-full rounded-full bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: step.progress }}
+                          viewport={viewportConfig}
+                          transition={{ duration: 1, delay: 0.15, ease: 'easeOut' }}
                           style={{ width: step.progress }}
                         />
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid gap-3 min-[520px]:grid-cols-3">
                 {indicators.map((indicator) => (
-                  <div key={indicator.label} className="rounded-[20px] border border-white/10 bg-white/5 p-4">
+                  <motion.div
+                    key={indicator.label}
+                    whileHover={{ y: -4, scale: 1.01, borderColor: 'rgba(41, 121, 255, 0.35)' }}
+                    className="rounded-[20px] border border-white/10 bg-white/5 p-4 transition-colors"
+                  >
                     <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">{indicator.label}</p>
                     <p className="mt-3 text-lg font-semibold text-white">{indicator.value}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-[24px] border border-neon-blue/20 bg-gradient-to-br from-neon-blue/15 to-transparent p-5">
+              <motion.div
+                whileHover={{ y: -4, scale: 1.005 }}
+                className="rounded-[24px] border border-neon-blue/20 bg-gradient-to-br from-neon-blue/15 to-transparent p-5"
+              >
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Desempenho</p>
@@ -375,14 +419,23 @@ const HeroPreview = () => {
                 </div>
 
                 <div className="mt-6 flex h-40 items-end gap-3">
-                  <div className="w-full rounded-t-[18px] bg-white/8" style={{ height: '42%' }} />
-                  <div className="w-full rounded-t-[18px] bg-gradient-to-t from-neon-blue/30 to-neon-blue" style={{ height: '68%' }} />
-                  <div className="w-full rounded-t-[18px] bg-gradient-to-t from-neon-cyan/30 to-neon-cyan" style={{ height: '82%' }} />
-                  <div className="w-full rounded-t-[18px] bg-gradient-to-t from-neon-purple/30 to-neon-purple" style={{ height: '58%' }} />
+                  {[42, 68, 82, 58].map((height, index) => (
+                    <motion.div
+                      key={height}
+                      className={`w-full rounded-t-[18px] ${index === 0 ? 'bg-white/8' : index === 1 ? 'bg-gradient-to-t from-neon-blue/30 to-neon-blue' : index === 2 ? 'bg-gradient-to-t from-neon-cyan/30 to-neon-cyan' : 'bg-gradient-to-t from-neon-purple/30 to-neon-purple'}`}
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${height}%` }}
+                      viewport={viewportConfig}
+                      transition={{ duration: 0.8, delay: index * 0.12, ease: 'easeOut' }}
+                    />
+                  ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+              <motion.div
+                whileHover={{ y: -4, scale: 1.005, borderColor: 'rgba(188, 19, 254, 0.25)' }}
+                className="rounded-[24px] border border-white/10 bg-white/5 p-5 transition-colors"
+              >
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Resultado em destaque</p>
@@ -392,20 +445,20 @@ const HeroPreview = () => {
                 </div>
 
                 <div className="mt-5 space-y-3">
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                  <motion.div whileHover={{ x: 4 }} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
                     <CheckCircle2 className="text-neon-cyan" size={18} />
                     <span className="text-sm text-neutral-300">Leads qualificados enviados ao CRM automaticamente</span>
-                  </div>
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                  </motion.div>
+                  <motion.div whileHover={{ x: 4 }} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
                     <CheckCircle2 className="text-neon-blue" size={18} />
                     <span className="text-sm text-neutral-300">Atualizacao de status sem retrabalho manual</span>
-                  </div>
-                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                  </motion.div>
+                  <motion.div whileHover={{ x: 4 }} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
                     <CheckCircle2 className="text-neon-purple" size={18} />
                     <span className="text-sm text-neutral-300">Visibilidade do funil para a equipe inteira</span>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -419,10 +472,10 @@ const HeroPreview = () => {
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neon-cyan/30 bg-neon-cyan/10 text-neon-cyan">
           <CheckCircle2 size={18} />
         </div>
-        <div>
+        <motion.div {...getRevealProps(0.1)} className="min-w-0">
           <p className="text-xs text-neutral-400">Processos Otimizados</p>
           <p className="text-sm font-bold text-white">+85% Eficiência</p>
-        </div>
+        </motion.div>
       </motion.div>
 
       <motion.div
@@ -433,10 +486,10 @@ const HeroPreview = () => {
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neon-blue/30 bg-neon-blue/10 text-neon-blue">
           <BarChart3 size={18} />
         </div>
-        <div>
+        <motion.div {...getRevealProps(0.15)} className="min-w-0">
           <p className="text-xs text-neutral-400">ROI Mensal</p>
           <p className="text-sm font-bold text-white">R$ 12.4k Economizados</p>
-        </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
@@ -446,6 +499,8 @@ const Hero = () => {
   const navigate = useNavigate();
   return (
     <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
+      <AmbientGlow className="-left-12 top-20 h-40 w-40 bg-neon-blue/10" />
+      <AmbientGlow className="right-0 top-10 h-52 w-52 bg-neon-cyan/10" delay={1.6} />
       <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-neon-blue/5 blur-[120px] rounded-l-[100px] hidden lg:block" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <motion.div
@@ -481,7 +536,10 @@ const Hero = () => {
             </motion.button>
           </div>
           
-          <div className="mt-10 sm:mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 grayscale opacity-30">
+          <motion.div
+            {...getRevealProps(0.3)}
+            className="mt-10 sm:mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 grayscale opacity-30"
+          >
             <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Parceiros:</span>
             <div className="flex flex-wrap gap-6 sm:gap-8 items-center text-white">
               <Layers size={24} />
@@ -491,7 +549,7 @@ const Hero = () => {
               <Rocket size={24} />
               <Users size={24} />
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         <HeroPreview />
@@ -529,14 +587,15 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-neutral-950">
+    <section className="relative py-20 sm:py-24 bg-neutral-950 overflow-hidden">
+      <AmbientGlow className="-right-16 top-24 h-44 w-44 bg-neon-purple/10" delay={1.2} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <motion.div {...getRevealProps(0.05)} className="text-center mb-16">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Nossas Soluções</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Desenvolvemos tecnologias sob medida para transformar a maneira como sua empresa opera no dia a dia.
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {services.map((s, i) => (
@@ -546,7 +605,7 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10, boxShadow: "0 0 30px rgba(255, 255, 255, 0.05)" }}
+              whileHover={{ y: -10, scale: 1.01, boxShadow: "0 0 30px rgba(255, 255, 255, 0.05)" }}
               className={`p-6 sm:p-8 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all group ${s.glow}`}
             >
               <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
@@ -576,9 +635,11 @@ const About = () => (
       <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-neon-blue rounded-full blur-[150px]" />
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-neon-purple rounded-full blur-[150px]" />
     </div>
+    <AmbientGlow className="left-0 top-16 h-40 w-40 bg-neon-blue/10" delay={0.8} />
+    <AmbientGlow className="right-8 bottom-10 h-36 w-36 bg-neon-purple/10" delay={1.8} />
     
     <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-      <div className="relative">
+      <motion.div {...getRevealProps(0.05, -28, 0)} className="relative">
         <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(41,121,255,0.2)] group bg-neutral-950">
           <img
             src="/about-operations.svg"
@@ -593,9 +654,9 @@ const About = () => (
           <p className="mt-3 text-4xl font-bold text-neon-blue">10+</p>
           <p className="text-neutral-400 text-sm">Anos de experiência em inovação tecnológica e automação industrial.</p>
         </div>
-      </div>
+      </motion.div>
       
-      <div>
+      <motion.div {...getRevealProps(0.12, 28, 0)}>
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 leading-tight">
           Transformando complexidade em <span className="text-neon-cyan">simplicidade.</span>
         </h2>
@@ -610,15 +671,23 @@ const About = () => (
             "Integração nativa com +500 softwares",
             "Segurança de dados nível bancário"
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 sm:gap-4">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -18 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewportConfig}
+              transition={{ duration: 0.55, delay: 0.08 * i, ease: 'easeOut' }}
+              whileHover={{ x: 4 }}
+              className="flex items-center gap-3 sm:gap-4"
+            >
               <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
                 <CheckCircle2 size={14} className="text-neon-cyan" />
               </div>
               <span className="text-neutral-300 font-medium text-sm sm:text-base">{item}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -668,14 +737,15 @@ const Testimonials = () => {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-20 sm:py-24 bg-neutral-950 overflow-hidden">
+    <section className="relative py-20 sm:py-24 bg-neutral-950 overflow-hidden">
+      <AmbientGlow className="left-12 top-20 h-36 w-36 bg-neon-blue/10" delay={0.7} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <motion.div {...getRevealProps(0.05)} className="text-center mb-16">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">O que dizem nossos clientes</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Empresas de diversos setores já transformaram sua realidade com a nossa tecnologia.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
           <div className="overflow-hidden px-1 sm:px-4 py-10 sm:py-12">
@@ -782,14 +852,15 @@ const SuccessCases = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-neutral-950">
+    <section className="relative py-20 sm:py-24 bg-neutral-950 overflow-hidden">
+      <AmbientGlow className="right-8 top-12 h-40 w-40 bg-neon-cyan/10" delay={1.3} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <motion.div {...getRevealProps(0.05)} className="text-center mb-16">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Cases de Sucesso</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Resultados reais alcançados através da nossa parceria com empresas líderes em seus setores.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
           {cases.map((c, i) => (
@@ -799,7 +870,7 @@ const SuccessCases = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -10, scale: 1.01 }}
               className={`p-6 sm:p-8 rounded-[32px] bg-white/5 border border-white/10 flex flex-col h-full transition-all group ${c.glow}`}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mb-8">
@@ -837,10 +908,14 @@ const SuccessCases = () => {
 };
 
 const Contact = () => (
-  <section className="py-20 sm:py-24 bg-neutral-950">
+  <section className="relative py-20 sm:py-24 bg-neutral-950 overflow-hidden">
+    <AmbientGlow className="-left-10 bottom-0 h-44 w-44 bg-neon-purple/10" delay={1} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
-      <div className="bg-white/5 rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 lg:p-16 shadow-xl border border-white/10 grid lg:grid-cols-2 gap-10 lg:gap-16 neon-glow-purple">
-        <div>
+      <motion.div
+        {...getRevealProps(0.05)}
+        className="bg-white/5 rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 lg:p-16 shadow-xl border border-white/10 grid lg:grid-cols-2 gap-10 lg:gap-16 neon-glow-purple"
+      >
+        <motion.div {...getRevealProps(0.12, -22, 0)}>
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6 text-white">Vamos conversar?</h2>
           <p className="text-neutral-400 mb-8 sm:mb-10">
             Nossa equipe de especialistas está pronta para analisar seus processos e propor a melhor estratégia de automação.
@@ -877,9 +952,9 @@ const Contact = () => (
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
         
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <motion.form {...getRevealProps(0.18, 22, 0)} className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
             <div className="space-y-2">
               <label className="text-sm font-bold text-neutral-400">Nome Completo</label>
@@ -910,17 +985,18 @@ const Contact = () => (
           >
             Enviar Mensagem
           </motion.button>
-        </form>
-      </div>
+        </motion.form>
+      </motion.div>
     </div>
   </section>
 );
 
 const Footer = () => (
-  <footer className="bg-neutral-950 pt-16 sm:pt-20 pb-10 border-t border-white/5">
+  <footer className="relative bg-neutral-950 pt-16 sm:pt-20 pb-10 border-t border-white/5 overflow-hidden">
+    <AmbientGlow className="right-0 top-10 h-36 w-36 bg-neon-blue/10" delay={1.4} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-16">
-        <div className="space-y-6">
+        <motion.div {...getRevealProps(0.05)} className="space-y-6">
           <Link to="/">
             <Logo />
           </Link>
@@ -950,9 +1026,9 @@ const Footer = () => (
               <Instagram size={18} />
             </motion.button>
           </div>
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div {...getRevealProps(0.1)} className="min-w-0">
           <h4 className="font-bold mb-6 text-white">Links Rápidos</h4>
           <ul className="space-y-4 text-sm text-neutral-500">
             <li className="hover:text-neon-cyan cursor-pointer transition-colors"><Link to="/">Início</Link></li>
@@ -960,9 +1036,9 @@ const Footer = () => (
             <li className="hover:text-neon-cyan cursor-pointer transition-colors"><Link to="/Sobre">Sobre Nós</Link></li>
             <li className="hover:text-neon-cyan cursor-pointer transition-colors">Blog</li>
           </ul>
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div {...getRevealProps(0.15)} className="min-w-0">
           <h4 className="font-bold mb-6 text-white">Serviços</h4>
           <ul className="space-y-4 text-sm text-neutral-500">
             <li className="hover:text-neon-blue cursor-pointer transition-colors">RPA & Bots</li>
@@ -970,31 +1046,31 @@ const Footer = () => (
             <li className="hover:text-neon-blue cursor-pointer transition-colors">Consultoria de Processos</li>
             <li className="hover:text-neon-blue cursor-pointer transition-colors">Integrações API</li>
           </ul>
-        </div>
+        </motion.div>
         
-        <div>
+        <motion.div {...getRevealProps(0.2)} className="min-w-0">
           <h4 className="font-bold mb-6 text-white">Newsletter</h4>
           <p className="text-sm text-neutral-500 mb-4">Receba insights sobre automação no seu e-mail.</p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
             <input type="email" placeholder="Seu e-mail" className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-1 focus:ring-neon-cyan/30" />
-            <button className="bg-neon-cyan text-neutral-950 p-3 rounded-xl hover:bg-neon-cyan/80 transition-all flex items-center justify-center">
+            <button className="w-full sm:w-auto bg-neon-cyan text-neutral-950 p-3 rounded-xl hover:bg-neon-cyan/80 transition-all flex items-center justify-center">
               <ArrowRight size={18} />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
       
-      <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500 font-medium text-center md:text-left">
+      <motion.div {...getRevealProps(0.08)} className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500 font-medium text-center md:text-left">
         <p>© 2026 Autoflow. Todos os direitos reservados.</p>
-        <div className="flex items-center gap-2">
-          <span>Projeto desenvolvido por</span>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span>Desenvolvido por</span>
           <a 
-            href="https://github.com/GEDEON1708" 
+            href="https://www.okapicodeforge.com.br/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-neon-cyan hover:text-white transition-colors font-bold"
           >
-            Gedeon
+            Okapi Code Forge
           </a>
         </div>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
@@ -1002,7 +1078,7 @@ const Footer = () => (
           <span className="hover:text-white cursor-pointer">Privacidade</span>
           <span className="hover:text-white cursor-pointer">Cookies</span>
         </div>
-      </div>
+      </motion.div>
     </div>
   </footer>
 );
