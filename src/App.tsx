@@ -167,6 +167,9 @@ const Navbar = () => {
             <motion.div key={item.path} className="relative">
               <Link
                 to={item.path}
+                onMouseEnter={() => preloadRouteAssets(item.path)}
+                onFocus={() => preloadRouteAssets(item.path)}
+                onTouchStart={() => preloadRouteAssets(item.path)}
                 className={`text-sm font-medium transition-colors ${isActive(item.path) ? 'text-neon-cyan' : 'text-neutral-400 hover:text-white'}`}
               >
                 {item.label}
@@ -182,6 +185,8 @@ const Navbar = () => {
           <motion.button 
             whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(41, 121, 255, 0.6)' }}
             whileTap={{ scale: 0.95 }}
+            onMouseEnter={() => preloadRouteAssets('/Contato')}
+            onFocus={() => preloadRouteAssets('/Contato')}
             onClick={() => navigate('/Contato')}
             className="bg-neon-blue text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neon-blue/80 transition-all"
           >
@@ -208,6 +213,9 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
+                onMouseEnter={() => preloadRouteAssets(item.path)}
+                onFocus={() => preloadRouteAssets(item.path)}
+                onTouchStart={() => preloadRouteAssets(item.path)}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`text-left text-lg font-medium py-2 transition-colors ${isActive(item.path) ? 'text-neon-cyan' : 'text-neutral-400 hover:text-white'}`}
               >
@@ -216,6 +224,7 @@ const Navbar = () => {
             ))}
             <button 
               onClick={() => {
+                preloadRouteAssets('/Contato');
                 navigate('/Contato');
                 setIsMobileMenuOpen(false);
               }}
@@ -300,23 +309,36 @@ const AmbientGlow = ({ className, delay = 0 }: { className: string; delay?: numb
   />
 );
 
+const loadSecondaryPages = () => import('./pages/secondaryPages');
+const loadContactWidget = () => import('./components/ContactWidget');
+
+const preloadRouteAssets = (path: string) => {
+  if (path === '/') return;
+
+  void loadSecondaryPages();
+
+  if (path === '/Contato') {
+    void loadContactWidget();
+  }
+};
+
 const ServicesPage = lazy(() =>
-  import('./pages/secondaryPages').then((module) => ({ default: module.ServicesPage }))
+  loadSecondaryPages().then((module) => ({ default: module.ServicesPage }))
 );
 const AboutPage = lazy(() =>
-  import('./pages/secondaryPages').then((module) => ({ default: module.AboutPage }))
+  loadSecondaryPages().then((module) => ({ default: module.AboutPage }))
 );
 const TestimonialsPage = lazy(() =>
-  import('./pages/secondaryPages').then((module) => ({ default: module.TestimonialsPage }))
+  loadSecondaryPages().then((module) => ({ default: module.TestimonialsPage }))
 );
 const SuccessCasesPage = lazy(() =>
-  import('./pages/secondaryPages').then((module) => ({ default: module.SuccessCasesPage }))
+  loadSecondaryPages().then((module) => ({ default: module.SuccessCasesPage }))
 );
 const ContactPage = lazy(() =>
-  import('./pages/secondaryPages').then((module) => ({ default: module.ContactPage }))
+  loadSecondaryPages().then((module) => ({ default: module.ContactPage }))
 );
 const LazyContactWidget = lazy(() =>
-  import('./components/ContactWidget').then((module) => ({ default: module.ContactWidget }))
+  loadContactWidget().then((module) => ({ default: module.ContactWidget }))
 );
 
 const HeroPreview = () => {
@@ -1141,6 +1163,23 @@ export default function App() {
     }
     setShowSplash(false);
   };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const warmup = () => {
+      void loadSecondaryPages();
+      void loadContactWidget();
+    };
+
+    if ('requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(() => warmup(), { timeout: 1200 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timer = window.setTimeout(warmup, 900);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen font-sans selection:bg-neutral-900 selection:text-white bg-neutral-950 text-white relative overflow-x-hidden">
