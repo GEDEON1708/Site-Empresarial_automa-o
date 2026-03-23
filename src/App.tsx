@@ -277,6 +277,171 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   </motion.div>
 );
 
+const HeroPreview = () => {
+  const summaryCards = [
+    { label: 'Fluxos ativos', value: '24', detail: 'em execucao' },
+    { label: 'Horas poupadas', value: '186h', detail: 'nos ultimos 30 dias' },
+  ];
+
+  const automationSteps = [
+    { label: 'Captura de pedidos', progress: '88%' },
+    { label: 'Aprovacao financeira', progress: '72%' },
+    { label: 'Atualizacao no ERP', progress: '94%' },
+  ];
+
+  const indicators = [
+    { label: 'Taxa de acerto', value: '99,2%' },
+    { label: 'Tempo medio', value: '3m12s' },
+    { label: 'Integracoes', value: '12 online' },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}
+      className="relative"
+    >
+      <div className="relative z-10 rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_top,#123a73_0%,#0b1220_38%,#050816_100%)] p-3 sm:p-4 shadow-[0_0_50px_rgba(41,121,255,0.22)]">
+        <div className="overflow-hidden rounded-[28px] border border-white/10 bg-neutral-950/90">
+          <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-500">Painel operacional</p>
+              <p className="mt-1 text-lg font-semibold text-white sm:text-xl">Monitoramento em tempo real</p>
+            </div>
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-neon-cyan/20 bg-neon-cyan/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-neon-cyan">
+              <span className="h-2 w-2 rounded-full bg-neon-cyan shadow-[0_0_12px_#00f2ff]" />
+              Operacao online
+            </div>
+          </div>
+
+          <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.85fr)]">
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                {summaryCards.map((card) => (
+                  <div key={card.label} className="rounded-[24px] border border-white/10 bg-white/5 p-4">
+                    <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">{card.label}</p>
+                    <p className="mt-3 text-2xl font-bold text-white sm:text-3xl">{card.value}</p>
+                    <p className="mt-2 text-sm text-neutral-400">{card.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Fluxos criticos</p>
+                    <p className="mt-1 text-lg font-semibold text-white">Etapas automaticas em andamento</p>
+                  </div>
+                  <Workflow className="text-neon-cyan" size={20} />
+                </div>
+
+                <div className="mt-5 space-y-4">
+                  {automationSteps.map((step) => (
+                    <div key={step.label}>
+                      <div className="mb-2 flex items-center justify-between gap-3 text-sm">
+                        <span className="text-neutral-300">{step.label}</span>
+                        <span className="text-neutral-500">{step.progress}</span>
+                      </div>
+                      <div className="h-2 rounded-full bg-white/5">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple"
+                          style={{ width: step.progress }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {indicators.map((indicator) => (
+                  <div key={indicator.label} className="rounded-[20px] border border-white/10 bg-white/5 p-4">
+                    <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">{indicator.label}</p>
+                    <p className="mt-3 text-lg font-semibold text-white">{indicator.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-[24px] border border-neon-blue/20 bg-gradient-to-br from-neon-blue/15 to-transparent p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Desempenho</p>
+                    <p className="mt-1 text-lg font-semibold text-white">Produtividade da operacao</p>
+                  </div>
+                  <BarChart3 className="text-neon-blue" size={20} />
+                </div>
+
+                <div className="mt-6 flex h-40 items-end gap-3">
+                  <div className="w-full rounded-t-[18px] bg-white/8" style={{ height: '42%' }} />
+                  <div className="w-full rounded-t-[18px] bg-gradient-to-t from-neon-blue/30 to-neon-blue" style={{ height: '68%' }} />
+                  <div className="w-full rounded-t-[18px] bg-gradient-to-t from-neon-cyan/30 to-neon-cyan" style={{ height: '82%' }} />
+                  <div className="w-full rounded-t-[18px] bg-gradient-to-t from-neon-purple/30 to-neon-purple" style={{ height: '58%' }} />
+                </div>
+              </div>
+
+              <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Resultado em destaque</p>
+                    <p className="mt-1 text-lg font-semibold text-white">Fila comercial organizada em tempo real</p>
+                  </div>
+                  <ShieldCheck className="text-neon-purple" size={20} />
+                </div>
+
+                <div className="mt-5 space-y-3">
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                    <CheckCircle2 className="text-neon-cyan" size={18} />
+                    <span className="text-sm text-neutral-300">Leads qualificados enviados ao CRM automaticamente</span>
+                  </div>
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                    <CheckCircle2 className="text-neon-blue" size={18} />
+                    <span className="text-sm text-neutral-300">Atualizacao de status sem retrabalho manual</span>
+                  </div>
+                  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                    <CheckCircle2 className="text-neon-purple" size={18} />
+                    <span className="text-sm text-neutral-300">Visibilidade do funil para a equipe inteira</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-4 right-4 z-20 hidden rounded-2xl border border-neon-cyan/20 bg-neutral-950/90 px-4 py-3 shadow-[0_0_30px_rgba(0,242,255,0.18)] sm:flex sm:items-center sm:gap-3 lg:top-6 lg:right-6"
+      >
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neon-cyan/30 bg-neon-cyan/10 text-neon-cyan">
+          <CheckCircle2 size={18} />
+        </div>
+        <div>
+          <p className="text-xs text-neutral-400">Processos Otimizados</p>
+          <p className="text-sm font-bold text-white">+85% Eficiência</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute bottom-4 left-4 z-20 hidden rounded-2xl border border-neon-blue/20 bg-neutral-950/90 px-4 py-3 shadow-[0_0_30px_rgba(41,121,255,0.18)] sm:flex sm:items-center sm:gap-3 lg:bottom-6 lg:left-6"
+      >
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neon-blue/30 bg-neon-blue/10 text-neon-blue">
+          <BarChart3 size={18} />
+        </div>
+        <div>
+          <p className="text-xs text-neutral-400">ROI Mensal</p>
+          <p className="text-sm font-bold text-white">R$ 12.4k Economizados</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const Hero = () => {
   const navigate = useNavigate();
   return (
@@ -329,64 +494,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative"
-        >
-          <div className="relative z-10 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(41,121,255,0.3)] aspect-video bg-neutral-900 border border-white/10">
-            <video 
-              autoPlay 
-              muted 
-              loop 
-              playsInline 
-              className="w-full h-full object-cover opacity-60"
-            >
-              <source src="https://cdn.pixabay.com/video/2021/04/12/70860-537443831_large.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 to-transparent" />
-          </div>
-          
-          {/* Floating elements */}
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-6 -right-6 glass p-4 rounded-2xl shadow-lg z-20 hidden sm:block neon-glow-cyan overflow-hidden group"
-          >
-            <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity">
-              <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=200" alt="Stats" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </div>
-            <div className="relative flex items-center gap-3 z-10">
-              <div className="w-10 h-10 bg-neon-cyan/20 text-neon-cyan rounded-full flex items-center justify-center backdrop-blur-md border border-neon-cyan/30">
-                <CheckCircle2 size={20} />
-              </div>
-              <div>
-                <p className="text-xs text-neutral-200 font-medium">Processos Otimizados</p>
-                <p className="text-sm font-bold text-white">+85% Eficiência</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-6 -left-6 glass p-4 rounded-2xl shadow-lg z-20 hidden sm:block neon-glow-blue overflow-hidden group"
-          >
-            <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=200" alt="ROI" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </div>
-            <div className="relative flex items-center gap-3 z-10">
-              <div className="w-10 h-10 bg-neon-blue/20 text-neon-blue rounded-full flex items-center justify-center backdrop-blur-md border border-neon-blue/30">
-                <BarChart3 size={20} />
-              </div>
-              <div>
-                <p className="text-xs text-neutral-200 font-medium">ROI Mensal</p>
-                <p className="text-sm font-bold text-white">R$ 12.4k Economizados</p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+        <HeroPreview />
       </div>
     </section>
   );
