@@ -579,17 +579,18 @@ const About = () => (
     
     <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       <div className="relative">
-        <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(41,121,255,0.2)] group">
-          <img 
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
+        <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(41,121,255,0.2)] group bg-neutral-950">
+          <img
+            src="/about-operations.svg"
             alt="Inovação Tecnológica" 
-            className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
-            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover opacity-95 group-hover:scale-[1.02] transition-transform duration-700"
+            loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/15 via-transparent to-neon-cyan/10" />
         </div>
-        <div className="relative sm:absolute mt-6 sm:mt-0 sm:-bottom-10 sm:-right-10 w-full sm:w-64 sm:h-64 bg-neutral-800/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 flex flex-col justify-end border border-white/10 neon-glow-blue">
-          <p className="text-4xl font-bold mb-2 text-neon-blue">10+</p>
+        <div className="relative sm:absolute mt-5 sm:mt-0 sm:bottom-6 sm:left-6 w-full sm:max-w-[260px] rounded-[28px] bg-neutral-900/88 backdrop-blur-xl p-5 sm:p-6 border border-white/10 shadow-[0_0_28px_rgba(41,121,255,0.2)]">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Experiencia aplicada</p>
+          <p className="mt-3 text-4xl font-bold text-neon-blue">10+</p>
           <p className="text-neutral-400 text-sm">Anos de experiência em inovação tecnológica e automação industrial.</p>
         </div>
       </div>
