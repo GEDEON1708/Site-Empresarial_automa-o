@@ -100,7 +100,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative"
       >
-        <Logo className="scale-150" />
+        <Logo className="scale-125 sm:scale-150" />
         
         {/* Scanning Effect */}
         <motion.div 
@@ -114,7 +114,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         initial={{ width: 0 }}
         animate={{ width: "200px" }}
         transition={{ duration: 2.5, ease: "easeInOut" }}
-        className="h-1 bg-neon-blue mt-12 rounded-full relative overflow-hidden"
+        className="h-1 w-[160px] sm:w-[200px] bg-neon-blue mt-12 rounded-full relative overflow-hidden"
       >
         <motion.div 
           className="absolute inset-0 bg-neon-cyan"
@@ -158,8 +158,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-3 shadow-sm' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-2.5 sm:py-3 shadow-sm' : 'bg-transparent py-4 sm:py-6'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
         <Link to="/">
           <Logo />
         </Link>
@@ -193,7 +193,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button className="md:hidden text-white p-2 -mr-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
@@ -205,7 +205,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-neutral-950/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-4 md:hidden shadow-2xl overflow-hidden"
+            className="absolute top-full left-0 right-0 bg-neutral-950/95 backdrop-blur-xl border-b border-white/10 p-4 sm:p-6 flex flex-col gap-4 md:hidden shadow-2xl overflow-hidden max-h-[calc(100vh-5rem)] overflow-y-auto"
           >
             {navItems.map((item) => (
               <Link
@@ -244,12 +244,12 @@ const LogoGrid = () => {
   ];
 
   return (
-    <section className="py-12 bg-neutral-950 border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-600 mb-10">
+    <section className="py-10 sm:py-12 bg-neutral-950 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <p className="text-center text-[10px] font-bold uppercase tracking-[0.24em] sm:tracking-[0.3em] text-neutral-600 mb-8 sm:mb-10">
           Empresas que confiam na Autoflow
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
           {partners.map((p, i) => (
             <motion.div 
               key={i}
@@ -280,45 +280,45 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
 const Hero = () => {
   const navigate = useNavigate();
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden">
+    <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
       <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-neon-blue/5 blur-[120px] rounded-l-[100px] hidden lg:block" />
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neon-cyan text-xs font-bold uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neon-cyan text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-6">
             <Zap size={14} className="text-neon-cyan animate-pulse" />
             O Futuro da Eficiência
           </div>
-          <h1 className="font-display text-5xl lg:text-7xl font-bold leading-[1.1] mb-8 text-white">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 sm:mb-8 text-white">
             Automatize o seu <span className="text-gradient italic">Sucesso</span> Empresarial.
           </h1>
-          <p className="text-lg text-neutral-400 mb-10 max-w-lg leading-relaxed">
+          <p className="text-base sm:text-lg text-neutral-400 mb-8 sm:mb-10 max-w-lg leading-relaxed">
             Elimine tarefas repetitivas, reduza erros operacionais e foque no que realmente importa: o crescimento estratégico do seu negócio.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <motion.button 
               onClick={() => navigate('/Servicos')}
               whileHover={{ scale: 1.05, gap: '1.5rem', boxShadow: '0 0 25px rgba(0, 242, 255, 0.5)' }}
               whileTap={{ scale: 0.95 }}
-              className="bg-neon-cyan text-neutral-950 px-8 py-4 rounded-full font-semibold flex items-center gap-2 hover:bg-neon-cyan/90 transition-all"
+              className="bg-neon-cyan text-neutral-950 px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 w-full sm:w-auto hover:bg-neon-cyan/90 transition-all"
             >
               Explorar Soluções <ArrowRight size={20} />
             </motion.button>
             <motion.button 
               whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 rounded-full font-semibold border border-white/20 text-white transition-all"
+              className="px-8 py-4 rounded-full font-semibold border border-white/20 text-white transition-all w-full sm:w-auto"
             >
               Ver Demonstração
             </motion.button>
           </div>
           
-          <div className="mt-12 flex items-center gap-6 grayscale opacity-30">
+          <div className="mt-10 sm:mt-12 flex flex-wrap items-center gap-x-5 gap-y-4 grayscale opacity-30">
             <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Parceiros:</span>
-            <div className="flex gap-8 items-center text-white">
+            <div className="flex flex-wrap gap-6 sm:gap-8 items-center text-white">
               <Layers size={24} />
               <ShieldCheck size={24} />
               <Workflow size={24} />
@@ -421,16 +421,16 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-24 bg-neutral-950">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 sm:py-24 bg-neutral-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl font-bold mb-4 text-white">Nossas Soluções</h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Nossas Soluções</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Desenvolvemos tecnologias sob medida para transformar a maneira como sua empresa opera no dia a dia.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {services.map((s, i) => (
             <motion.div
               key={i}
@@ -439,7 +439,7 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10, boxShadow: "0 0 30px rgba(255, 255, 255, 0.05)" }}
-              className={`p-8 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all group ${s.glow}`}
+              className={`p-6 sm:p-8 rounded-3xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all group ${s.glow}`}
             >
               <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
                 {s.icon}
@@ -463,13 +463,13 @@ const Services = () => {
 };
 
 const About = () => (
-  <section className="py-24 bg-neutral-900 text-white overflow-hidden relative">
+  <section className="py-20 sm:py-24 bg-neutral-900 text-white overflow-hidden relative">
     <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-blue rounded-full blur-[150px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple rounded-full blur-[150px]" />
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-neon-blue rounded-full blur-[150px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-neon-purple rounded-full blur-[150px]" />
     </div>
     
-    <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       <div className="relative">
         <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(41,121,255,0.2)] group">
           <img 
@@ -480,17 +480,17 @@ const About = () => (
           />
           <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/20 to-transparent" />
         </div>
-        <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-neutral-800/90 backdrop-blur-xl rounded-3xl p-8 flex flex-col justify-end border border-white/10 neon-glow-blue">
+        <div className="relative sm:absolute mt-6 sm:mt-0 sm:-bottom-10 sm:-right-10 w-full sm:w-64 sm:h-64 bg-neutral-800/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 flex flex-col justify-end border border-white/10 neon-glow-blue">
           <p className="text-4xl font-bold mb-2 text-neon-blue">10+</p>
           <p className="text-neutral-400 text-sm">Anos de experiência em inovação tecnológica e automação industrial.</p>
         </div>
       </div>
       
       <div>
-        <h2 className="font-display text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 leading-tight">
           Transformando complexidade em <span className="text-neon-cyan">simplicidade.</span>
         </h2>
-        <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
+        <p className="text-neutral-400 text-base sm:text-lg mb-8 leading-relaxed">
           A Autoflow apoia empresas na estruturacao de processos, integracao de sistemas e padronizacao operacional para reduzir retrabalho, ganhar previsibilidade e sustentar o crescimento com eficiencia.
         </p>
         
@@ -501,11 +501,11 @@ const About = () => (
             "Integração nativa com +500 softwares",
             "Segurança de dados nível bancário"
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-4">
+            <div key={i} className="flex items-center gap-3 sm:gap-4">
               <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
                 <CheckCircle2 size={14} className="text-neon-cyan" />
               </div>
-              <span className="text-neutral-300 font-medium">{item}</span>
+              <span className="text-neutral-300 font-medium text-sm sm:text-base">{item}</span>
             </div>
           ))}
         </div>
@@ -559,17 +559,17 @@ const Testimonials = () => {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-24 bg-neutral-950 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 sm:py-24 bg-neutral-950 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl font-bold mb-4 text-white">O que dizem nossos clientes</h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">O que dizem nossos clientes</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Empresas de diversos setores já transformaram sua realidade com a nossa tecnologia.
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="overflow-hidden px-4 py-12">
+          <div className="overflow-hidden px-1 sm:px-4 py-10 sm:py-12">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -577,25 +577,25 @@ const Testimonials = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="bg-white/5 rounded-[40px] p-8 md:p-16 border border-white/10 shadow-sm relative neon-glow-blue"
+                className="bg-white/5 rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 md:p-16 border border-white/10 shadow-sm relative neon-glow-blue"
               >
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-neon-blue text-white rounded-full flex items-center justify-center shadow-xl neon-glow-blue">
+                <div className="absolute -top-5 sm:-top-6 left-1/2 -translate-x-1/2 w-11 h-11 sm:w-12 sm:h-12 bg-neon-blue text-white rounded-full flex items-center justify-center shadow-xl neon-glow-blue">
                   <Layers size={20} />
                 </div>
                 
                 <div className="flex flex-col items-center text-center">
-                  <p className="text-xl md:text-2xl font-medium text-neutral-200 italic mb-10 leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl font-medium text-neutral-200 italic mb-8 sm:mb-10 leading-relaxed">
                     "{testimonials[currentIndex].quote}"
                   </p>
                   
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
                     <img 
                       src={testimonials[currentIndex].image} 
                       alt={testimonials[currentIndex].name}
                       className="w-16 h-16 rounded-full object-cover border-2 border-neon-blue shadow-md"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="text-left">
+                    <div className="text-center sm:text-left">
                       <p className="font-bold text-white">{testimonials[currentIndex].name}</p>
                       <p className="text-sm text-neutral-400">{testimonials[currentIndex].role}</p>
                     </div>
@@ -606,12 +606,12 @@ const Testimonials = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-center items-center gap-6 mt-4">
+          <div className="flex justify-center items-center gap-4 sm:gap-6 mt-2 sm:mt-4">
             <motion.button
               whileHover={{ scale: 1.1, x: -5, borderColor: '#00f2ff', color: '#00f2ff' }}
               whileTap={{ scale: 0.9 }}
               onClick={prev}
-              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 transition-all"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 transition-all"
             >
               <ArrowRight size={20} className="rotate-180" />
             </motion.button>
@@ -630,7 +630,7 @@ const Testimonials = () => {
               whileHover={{ scale: 1.1, x: 5, borderColor: '#00f2ff', color: '#00f2ff' }}
               whileTap={{ scale: 0.9 }}
               onClick={next}
-              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 transition-all"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 transition-all"
             >
               <ArrowRight size={20} />
             </motion.button>
@@ -673,16 +673,16 @@ const SuccessCases = () => {
   ];
 
   return (
-    <section className="py-24 bg-neutral-950">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 sm:py-24 bg-neutral-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl font-bold mb-4 text-white">Cases de Sucesso</h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Cases de Sucesso</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Resultados reais alcançados através da nossa parceria com empresas líderes em seus setores.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
           {cases.map((c, i) => (
             <motion.div
               key={i}
@@ -691,9 +691,9 @@ const SuccessCases = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className={`p-8 rounded-[32px] bg-white/5 border border-white/10 flex flex-col h-full transition-all group ${c.glow}`}
+              className={`p-6 sm:p-8 rounded-[32px] bg-white/5 border border-white/10 flex flex-col h-full transition-all group ${c.glow}`}
             >
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 mb-8">
                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
                   {c.icon}
                 </div>
@@ -702,7 +702,7 @@ const SuccessCases = () => {
                 </span>
               </div>
 
-              <h3 className="text-2xl font-bold text-white mb-6">{c.company}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">{c.company}</h3>
 
               <div className="space-y-6 flex-1">
                 <div>
@@ -728,23 +728,23 @@ const SuccessCases = () => {
 };
 
 const Contact = () => (
-  <section className="py-24 bg-neutral-950">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="bg-white/5 rounded-[40px] p-8 lg:p-16 shadow-xl border border-white/10 grid lg:grid-cols-2 gap-16 neon-glow-purple">
+  <section className="py-20 sm:py-24 bg-neutral-950">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="bg-white/5 rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 lg:p-16 shadow-xl border border-white/10 grid lg:grid-cols-2 gap-10 lg:gap-16 neon-glow-purple">
         <div>
-          <h2 className="font-display text-4xl font-bold mb-6 text-white">Vamos conversar?</h2>
-          <p className="text-neutral-400 mb-10">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6 text-white">Vamos conversar?</h2>
+          <p className="text-neutral-400 mb-8 sm:mb-10">
             Nossa equipe de especialistas está pronta para analisar seus processos e propor a melhor estratégia de automação.
           </p>
           
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-neon-cyan">
                 <Mail size={24} />
               </div>
               <div>
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">E-mail</p>
-                <p className="font-bold text-white">contato@autoflow.com.br</p>
+                <p className="font-bold text-white break-all sm:break-normal">contato@autoflow.com.br</p>
               </div>
             </div>
             
@@ -771,7 +771,7 @@ const Contact = () => (
         </div>
         
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
             <div className="space-y-2">
               <label className="text-sm font-bold text-neutral-400">Nome Completo</label>
               <input type="text" className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-neon-cyan/20 transition-all" placeholder="Seu nome" />
@@ -797,7 +797,7 @@ const Contact = () => (
           <motion.button 
             whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(188, 19, 254, 0.5)' }}
             whileTap={{ scale: 0.98 }}
-            className="w-full bg-neon-purple text-white py-5 rounded-2xl font-bold hover:bg-neon-purple/90 transition-all"
+            className="w-full bg-neon-purple text-white py-4 sm:py-5 rounded-2xl font-bold hover:bg-neon-purple/90 transition-all"
           >
             Enviar Mensagem
           </motion.button>
@@ -808,9 +808,9 @@ const Contact = () => (
 );
 
 const Footer = () => (
-  <footer className="bg-neutral-950 pt-20 pb-10 border-t border-white/5">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+  <footer className="bg-neutral-950 pt-16 sm:pt-20 pb-10 border-t border-white/5">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-16">
         <div className="space-y-6">
           <Link to="/">
             <Logo />
@@ -866,16 +866,16 @@ const Footer = () => (
         <div>
           <h4 className="font-bold mb-6 text-white">Newsletter</h4>
           <p className="text-sm text-neutral-500 mb-4">Receba insights sobre automação no seu e-mail.</p>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
             <input type="email" placeholder="Seu e-mail" className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-1 focus:ring-neon-cyan/30" />
-            <button className="bg-neon-cyan text-neutral-950 p-3 rounded-xl hover:bg-neon-cyan/80 transition-all">
+            <button className="bg-neon-cyan text-neutral-950 p-3 rounded-xl hover:bg-neon-cyan/80 transition-all flex items-center justify-center">
               <ArrowRight size={18} />
             </button>
           </div>
         </div>
       </div>
       
-      <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500 font-medium">
+      <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500 font-medium text-center md:text-left">
         <p>© 2026 Autoflow. Todos os direitos reservados.</p>
         <div className="flex items-center gap-2">
           <span>Projeto desenvolvido por</span>
@@ -888,7 +888,7 @@ const Footer = () => (
             Gedeon
           </a>
         </div>
-        <div className="flex gap-8">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
           <span className="hover:text-white cursor-pointer">Termos de Uso</span>
           <span className="hover:text-white cursor-pointer">Privacidade</span>
           <span className="hover:text-white cursor-pointer">Cookies</span>

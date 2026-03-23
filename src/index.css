@@ -12,7 +12,7 @@
 
 @layer base {
   body {
-    @apply bg-neutral-950 text-white antialiased;
+    @apply bg-neutral-950 text-white antialiased overflow-x-hidden;
   }
 }
 

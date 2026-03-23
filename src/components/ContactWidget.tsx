@@ -13,14 +13,14 @@ export const ContactWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100]">
+    <div className="fixed bottom-4 left-4 right-4 sm:bottom-6 sm:left-auto sm:right-6 z-[100] flex justify-end">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="absolute bottom-20 right-0 w-[350px] sm:w-[400px] h-[500px] glass rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-white/10 neon-glow-blue"
+            className="absolute bottom-20 right-0 w-full sm:w-[400px] h-[500px] max-h-[calc(100vh-7rem)] glass rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-white/10 neon-glow-blue"
           >
             <div className="bg-neutral-900 p-4 flex items-center justify-between text-white border-b border-white/5">
               <div className="flex items-center gap-3">
@@ -53,9 +53,9 @@ export const ContactWidget = () => {
                     <div className="w-10 h-10 bg-neon-cyan/10 text-neon-cyan rounded-2xl flex items-center justify-center">
                       <Mail size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-1">E-mail</p>
-                      <p className="text-sm font-semibold text-white">contato@autoflow.com.br</p>
+                      <p className="text-sm font-semibold text-white break-all">contato@autoflow.com.br</p>
                       <p className="text-xs text-neutral-400 mt-1">Retorno comercial em horário útil.</p>
                     </div>
                   </div>
@@ -66,7 +66,7 @@ export const ContactWidget = () => {
                     <div className="w-10 h-10 bg-neon-blue/10 text-neon-blue rounded-2xl flex items-center justify-center">
                       <Phone size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-1">Telefone</p>
                       <p className="text-sm font-semibold text-white">+55 (11) 98765-4321</p>
                       <p className="text-xs text-neutral-400 mt-1">Atendimento para novos projetos e suporte.</p>
@@ -79,7 +79,7 @@ export const ContactWidget = () => {
                     <div className="w-10 h-10 bg-neon-purple/10 text-neon-purple rounded-2xl flex items-center justify-center">
                       <MapPin size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-1">Escritório</p>
                       <p className="text-sm font-semibold text-white">Av. Paulista, 1000 - São Paulo, SP</p>
                       <p className="text-xs text-neutral-400 mt-1">Agende uma conversa com o nosso time.</p>
