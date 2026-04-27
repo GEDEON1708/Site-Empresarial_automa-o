@@ -38,30 +38,30 @@ export function ServicesPage() {
   const services = [
     {
       icon: <Bot className="text-neon-cyan" />,
-      title: 'RPA & Automacao de Rotinas',
+      title: 'RPA & Automação de Rotinas',
       description:
-        'Robos que executam tarefas repetitivas em sistemas legados ou web com precisao cirurgica.',
+        'Robôs que executam tarefas repetitivas em sistemas legados ou web com precisão cirúrgica.',
       glow: 'neon-glow-cyan',
     },
     {
       icon: <Workflow className="text-neon-blue" />,
-      title: 'Orquestracao de Fluxos',
+      title: 'Orquestração de Fluxos',
       description:
-        'Conecte todas as suas ferramentas em um fluxo de trabalho unificado e automatico.',
+        'Conecte todas as suas ferramentas em um fluxo de trabalho unificado e automático.',
       glow: 'neon-glow-blue',
     },
     {
       icon: <BarChart3 className="text-neon-purple" />,
-      title: 'Analise & Indicadores',
+      title: 'Análise & Indicadores',
       description:
-        'Transforme dados operacionais em indicadores claros para acompanhar desempenho e apoiar decisoes.',
+        'Transforme dados operacionais em indicadores claros para acompanhar desempenho e apoiar decisões.',
       glow: 'neon-glow-purple',
     },
     {
       icon: <ShieldCheck className="text-neon-pink" />,
-      title: 'Seguranca & Compliance',
+      title: 'Segurança & Compliance',
       description:
-        'Automacao de auditorias e processos de seguranca para manter sua operacao protegida.',
+        'Automação de auditorias e processos de segurança para manter sua operação protegida.',
       glow: 'neon-glow-pink',
     },
   ];
@@ -71,7 +71,7 @@ export function ServicesPage() {
       <AmbientGlow className="-right-16 top-24 h-44 w-44 bg-neon-purple/10" delay={1.2} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div {...getRevealProps(0.05)} className="text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Nossas Solucoes</h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Nossas Soluções</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
             Desenvolvemos tecnologias sob medida para transformar a maneira como sua empresa opera no dia a dia.
           </p>
@@ -103,10 +103,10 @@ export function ServicesPage() {
 
 export function AboutPage() {
   const bullets = [
-    'Foco total em resultados mensuraveis',
-    'Suporte tecnico especializado 24/7',
-    'Integracao nativa com +500 softwares',
-    'Seguranca de dados nivel bancario',
+    'Foco total em resultados mensuráveis',
+    'Suporte técnico especializado 24/7',
+    'Integração nativa com +500 softwares',
+    'Segurança de dados nível bancário',
   ];
 
   return (
@@ -123,17 +123,17 @@ export function AboutPage() {
           <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(41,121,255,0.2)] group bg-neutral-950">
             <img
               src="/about-operations.svg"
-              alt="Painel visual de operacoes, integracoes e automacao empresarial"
+              alt="Painel visual de operações, integrações e automação empresarial"
               className="w-full h-full object-cover opacity-95 group-hover:scale-[1.02] transition-transform duration-700"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/15 via-transparent to-neon-cyan/10" />
           </div>
           <div className="relative sm:absolute mt-5 sm:mt-0 sm:bottom-6 sm:left-6 w-full sm:max-w-[260px] rounded-[28px] bg-neutral-900/88 backdrop-blur-xl p-5 sm:p-6 border border-white/10 shadow-[0_0_28px_rgba(41,121,255,0.2)]">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Experiencia aplicada</p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Experiência aplicada</p>
             <p className="mt-3 text-4xl font-bold text-neon-blue">10+</p>
             <p className="mt-2 text-sm leading-relaxed text-neutral-300">
-              Anos apoiando empresas na estruturacao de processos, integracao de sistemas e ganho de eficiencia operacional.
+              Anos apoiando empresas na estruturação de processos, integração de sistemas e ganho de eficiência operacional.
             </p>
           </div>
         </motion.div>
@@ -143,7 +143,7 @@ export function AboutPage() {
             Transformando complexidade em <span className="text-neon-cyan">simplicidade.</span>
           </h2>
           <p className="text-neutral-400 text-base sm:text-lg mb-8 leading-relaxed">
-            A Autoflow apoia empresas na estruturacao de processos, integracao de sistemas e padronizacao operacional para reduzir retrabalho, ganhar previsibilidade e sustentar o crescimento com eficiencia.
+            A Autoflow apoia empresas na estruturação de processos, integração de sistemas e padronização operacional para reduzir retrabalho, ganhar previsibilidade e sustentar o crescimento com eficiência.
           </p>
 
           <div className="space-y-6">
@@ -177,11 +177,11 @@ export function TestimonialsPage() {
       name: 'Ana Silva',
       role: 'CEO da TechNova',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200',
-      quote: 'A Autoflow reduziu nossos custos operacionais em 40% no primeiro semestre. A precisao dos bots e impressionante.',
+      quote: 'A Autoflow reduziu nossos custos operacionais em 40% no primeiro semestre. A precisão dos bots é impressionante.',
     },
     {
       name: 'Carlos Mendes',
-      role: 'Diretor de Operacoes da LogiFast',
+      role: 'Diretor de Operações da LogiFast',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200',
       quote: 'A integracao de fluxos foi um divisor de aguas para nossa logistica. Hoje temos visibilidade total em tempo real.',
     },
@@ -189,7 +189,7 @@ export function TestimonialsPage() {
       name: 'Juliana Costa',
       role: 'Gerente de TI da InnovaBank',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200',
-      quote: 'Seguranca e eficiencia andam juntas com as solucoes da Autoflow. O suporte tecnico e excepcional e proativo.',
+      quote: 'Segurança e eficiência andam juntas com as soluções da Autoflow. O suporte técnico é excepcional e proativo.',
     },
   ];
 
@@ -203,7 +203,7 @@ export function TestimonialsPage() {
         <motion.div {...getRevealProps(0.05)} className="text-center mb-16">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">O que dizem nossos clientes</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
-            Empresas de diversos setores ja transformaram sua realidade com a nossa tecnologia.
+            Empresas de diversos setores já transformaram sua realidade com a nossa tecnologia.
           </p>
         </motion.div>
 
@@ -274,29 +274,29 @@ export function SuccessCasesPage() {
   const cases = [
     {
       company: 'Global Logistics Co.',
-      sector: 'Logistica',
+      sector: 'Logística',
       icon: <Truck size={24} className="text-neon-blue" />,
-      challenge: 'Rastreamento manual de mais de 5.000 remessas diarias, causando atrasos e erros de comunicacao.',
-      solution: 'Implementacao de bots RPA para rastreamento em tempo real e notificacoes automaticas aos clientes.',
-      result: 'Reducao de 95% nos erros de rastreamento e atualizacoes de entrega 30% mais rapidas.',
+      challenge: 'Rastreamento manual de mais de 5.000 remessas diárias, causando atrasos e erros de comunicação.',
+      solution: 'Implementação de bots RPA para rastreamento em tempo real e notificações automáticas aos clientes.',
+      result: 'Redução de 95% nos erros de rastreamento e atualizações de entrega 30% mais rápidas.',
       glow: 'neon-glow-blue',
     },
     {
       company: 'HealthTech Solutions',
-      sector: 'Saude',
+      sector: 'Saúde',
       icon: <Stethoscope size={24} className="text-neon-cyan" />,
       challenge: 'Entrada manual de dados de pacientes consumindo 4 horas por turno da equipe de enfermagem.',
-      solution: 'Processamento de documentos com regras de conferencia e preenchimento automatico de formularios e prontuarios.',
+      solution: 'Processamento de documentos com regras de conferência e preenchimento automático de formulários e prontuários.',
       result: '15.000 horas economizadas anualmente, permitindo mais tempo para o cuidado direto ao paciente.',
       glow: 'neon-glow-cyan',
     },
     {
       company: 'Financier Group',
-      sector: 'Financas',
+      sector: 'Finanças',
       icon: <TrendingUp size={24} className="text-neon-purple" />,
-      challenge: 'Deteccao de fraudes lenta e reativa, resultando em perdas financeiras significativas.',
-      solution: 'Monitoramento de transacoes em tempo real com regras de negocio e alertas automaticos.',
-      result: 'Aumento de 60% na taxa de deteccao de fraudes nos primeiros 3 meses de operacao.',
+      challenge: 'Detecção de fraudes lenta e reativa, resultando em perdas financeiras significativas.',
+      solution: 'Monitoramento de transações em tempo real com regras de negócio e alertas automáticos.',
+      result: 'Aumento de 60% na taxa de detecção de fraudes nos primeiros 3 meses de operação.',
       glow: 'neon-glow-purple',
     },
   ];
@@ -308,7 +308,7 @@ export function SuccessCasesPage() {
         <motion.div {...getRevealProps(0.05)} className="text-center mb-16">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">Cases de Sucesso</h2>
           <p className="text-neutral-500 max-w-2xl mx-auto">
-            Resultados reais alcancados atraves da nossa parceria com empresas lideres em seus setores.
+            Resultados reais alcançados através da nossa parceria com empresas líderes em seus setores.
           </p>
         </motion.div>
 
@@ -337,13 +337,13 @@ export function SuccessCasesPage() {
                   <p className="text-sm text-neutral-400 leading-relaxed">{item.challenge}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2">Solucao Autoflow</p>
+                  <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2">Solução Autoflow</p>
                   <p className="text-sm text-neutral-300 leading-relaxed">{item.solution}</p>
                 </div>
               </div>
 
               <div className="mt-8 pt-6 border-t border-white/5">
-                <p className="text-[10px] font-bold text-neon-cyan uppercase tracking-widest mb-2">Resultado Alcancado</p>
+                <p className="text-[10px] font-bold text-neon-cyan uppercase tracking-widest mb-2">Resultado Alcançado</p>
                 <p className="text-xl font-bold text-white leading-tight">{item.result}</p>
               </div>
             </motion.div>
@@ -366,7 +366,7 @@ export function ContactPage() {
           <motion.div {...getRevealProps(0.12, -22, 0)}>
             <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6 text-white">Vamos conversar?</h2>
             <p className="text-neutral-400 mb-8 sm:mb-10">
-              Nossa equipe de especialistas esta pronta para analisar seus processos e propor a melhor estrategia de automacao.
+              Nossa equipe de especialistas está pronta para analisar seus processos e propor a melhor estratégia de automação.
             </p>
 
             <div className="space-y-6 sm:space-y-8">
@@ -395,8 +395,8 @@ export function ContactPage() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">Escritorio</p>
-                  <p className="font-bold text-white">Av. Paulista, 1000 - Sao Paulo, SP</p>
+                  <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">Escritório</p>
+                  <p className="font-bold text-white">Av. Paulista, 1000 - São Paulo, SP</p>
                 </div>
               </div>
             </div>

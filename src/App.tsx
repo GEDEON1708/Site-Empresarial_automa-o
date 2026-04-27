@@ -121,7 +121,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
       </motion.div>
       
       <p className="text-neutral-500 font-mono text-xs mt-4 tracking-widest uppercase animate-pulse">
-        Preparando a experiencia...
+        Preparando a experiência...
       </p>
     </motion.div>
   );
@@ -343,20 +343,20 @@ const LazyContactWidget = lazy(() =>
 
 const HeroPreview = () => {
   const summaryCards = [
-    { label: 'Fluxos ativos', value: '24', detail: 'em execucao' },
-    { label: 'Horas poupadas', value: '186h', detail: 'nos ultimos 30 dias' },
+    { label: 'Fluxos ativos', value: '24', detail: 'em execução' },
+    { label: 'Horas poupadas', value: '186h', detail: 'nos últimos 30 dias' },
   ];
 
   const automationSteps = [
     { label: 'Captura de pedidos', progress: '88%' },
-    { label: 'Aprovacao financeira', progress: '72%' },
-    { label: 'Atualizacao no ERP', progress: '94%' },
+    { label: 'Aprovação financeira', progress: '72%' },
+    { label: 'Atualização no ERP', progress: '94%' },
   ];
 
   const indicators = [
     { label: 'Taxa de acerto', value: '99,2%' },
     { label: 'Tempo medio', value: '3m12s' },
-    { label: 'Integracoes', value: '12 online' },
+    { label: 'Integrações', value: '12 online' },
   ];
 
   return (
@@ -401,7 +401,7 @@ const HeroPreview = () => {
               >
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Fluxos criticos</p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Fluxos críticos</p>
                     <p className="mt-1 text-lg font-semibold text-white">Etapas automaticas em andamento</p>
                   </div>
                   <Workflow className="text-neon-cyan" size={20} />
@@ -688,7 +688,7 @@ const About = () => (
           <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/15 via-transparent to-neon-cyan/10" />
         </div>
         <div className="relative sm:absolute mt-5 sm:mt-0 sm:bottom-6 sm:left-6 w-full sm:max-w-[260px] rounded-[28px] bg-neutral-900/88 backdrop-blur-xl p-5 sm:p-6 border border-white/10 shadow-[0_0_28px_rgba(41,121,255,0.2)]">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Experiencia aplicada</p>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Experiência aplicada</p>
           <p className="mt-3 text-4xl font-bold text-neon-blue">10+</p>
           <p className="text-neutral-400 text-sm">Anos de experiência em inovação tecnológica e automação industrial.</p>
         </div>
@@ -699,7 +699,7 @@ const About = () => (
           Transformando complexidade em <span className="text-neon-cyan">simplicidade.</span>
         </h2>
         <p className="text-neutral-400 text-base sm:text-lg mb-8 leading-relaxed">
-          A Autoflow apoia empresas na estruturacao de processos, integracao de sistemas e padronizacao operacional para reduzir retrabalho, ganhar previsibilidade e sustentar o crescimento com eficiencia.
+          A Autoflow apoia empresas na estruturação de processos, integração de sistemas e padronização operacional para reduzir retrabalho, ganhar previsibilidade e sustentar o crescimento com eficiência.
         </p>
         
         <div className="space-y-6">
@@ -1039,7 +1039,7 @@ const Footer = () => (
             <Logo />
           </Link>
           <p className="text-neutral-500 text-sm leading-relaxed">
-            Solucoes de automacao empresarial, integracao de sistemas e organizacao de fluxos para operacoes mais eficientes, confiaveis e escalaveis.
+            Soluções de automação empresarial, integração de sistemas e organização de fluxos para operações mais eficientes, confiáveis e escaláveis.
           </p>
           <div className="flex gap-4">
             <motion.button 
