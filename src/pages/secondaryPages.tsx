@@ -183,7 +183,7 @@ export function TestimonialsPage() {
       name: 'Carlos Mendes',
       role: 'Diretor de Operações da LogiFast',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200',
-      quote: 'A integracao de fluxos foi um divisor de aguas para nossa logistica. Hoje temos visibilidade total em tempo real.',
+      quote: 'A integração de fluxos foi um divisor de águas para nossa logística. Hoje temos visibilidade total em tempo real.',
     },
     {
       name: 'Juliana Costa',
@@ -416,8 +416,8 @@ export function ContactPage() {
             <div className="space-y-2">
               <label className="text-sm font-bold text-neutral-400">Assunto</label>
               <select className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-neon-cyan/20 transition-all appearance-none">
-                <option className="bg-neutral-900">Consultoria de Automacao</option>
-                <option className="bg-neutral-900">Suporte Tecnico</option>
+                <option className="bg-neutral-900">Consultoria de Automação</option>
+                <option className="bg-neutral-900">Suporte Técnico</option>
                 <option className="bg-neutral-900">Parcerias</option>
                 <option className="bg-neutral-900">Outros</option>
               </select>

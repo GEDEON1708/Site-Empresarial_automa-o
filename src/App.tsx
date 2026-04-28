@@ -355,7 +355,7 @@ const HeroPreview = () => {
 
   const indicators = [
     { label: 'Taxa de acerto', value: '99,2%' },
-    { label: 'Tempo medio', value: '3m12s' },
+    { label: 'Tempo médio', value: '3m12s' },
     { label: 'Integrações', value: '12 online' },
   ];
 
@@ -375,7 +375,7 @@ const HeroPreview = () => {
             </div>
             <div className="inline-flex items-center gap-2 self-start rounded-full border border-neon-cyan/20 bg-neon-cyan/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-neon-cyan">
               <span className="h-2 w-2 rounded-full bg-neon-cyan shadow-[0_0_12px_#00f2ff]" />
-              Operacao online
+              Operação online
             </div>
           </div>
 
@@ -402,7 +402,7 @@ const HeroPreview = () => {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Fluxos críticos</p>
-                    <p className="mt-1 text-lg font-semibold text-white">Etapas automaticas em andamento</p>
+                    <p className="mt-1 text-lg font-semibold text-white">Etapas automáticas em andamento</p>
                   </div>
                   <Workflow className="text-neon-cyan" size={20} />
                 </div>
@@ -451,7 +451,7 @@ const HeroPreview = () => {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Desempenho</p>
-                    <p className="mt-1 text-lg font-semibold text-white">Produtividade da operacao</p>
+                    <p className="mt-1 text-lg font-semibold text-white">Produtividade da operação</p>
                   </div>
                   <BarChart3 className="text-neon-blue" size={20} />
                 </div>
@@ -489,7 +489,7 @@ const HeroPreview = () => {
                   </motion.div>
                   <motion.div whileHover={{ x: 4 }} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
                     <CheckCircle2 className="text-neon-blue" size={18} />
-                    <span className="text-sm text-neutral-300">Atualizacao de status sem retrabalho manual</span>
+                    <span className="text-sm text-neutral-300">Atualização de status sem retrabalho manual</span>
                   </motion.div>
                   <motion.div whileHover={{ x: 4 }} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
                     <CheckCircle2 className="text-neon-purple" size={18} />
